@@ -2,15 +2,21 @@
 
 <head>
 </head>
-<body>
-<form method="post" action="/register">
-    <input type="text" name="name" placeholder="Name" autofocus>
-    <input type="text" name="email" placeholder="Email"/>
-    <input type="password" name="password" placeholder="Password"/>
-    <input type="password" name="cpwd" placeholder="Confirm Password"/>
 
-    <button type="submit">Submit</button>
-</form>
+<body>
+    <form method="post" action="/register">
+        <input type="text" name="name" placeholder="Name" autofocus>
+        <input type="text" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <input type="password" name="cpwd" placeholder="Confirm Password" />
+
+        <button type="submit">Submit</button>
+        <div>
+            {{#errors}} <div>{{msg}}</div> {{/errors}}
+        </div>
+        <div>
+            Already a user? <a href="/login">Click here to log in</a>
+    </form>
 </body>
 
 </html>
