@@ -12,8 +12,8 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-        return (
-      queryInterface.bulkInsert('gabs', [{
+    return (
+      queryInterface.bulkInsert('likes', [{
         userId: 2,
         gabId: 1,
         userLikes: 'Bruin',
