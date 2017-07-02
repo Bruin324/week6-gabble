@@ -1,0 +1,18 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        {{#gab}} 
+        <div>{{author}} | {{description}}</div>
+        <div>{{createdAt}}</div>
+        {{/gab}}
+        <h1>Liked By</h1>
+        <div>
+            {{#likes}}
+                {{userLiked}}
+            {{/likes}}
+        </div>
+
+    </body>
+</html>

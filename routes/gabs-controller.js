@@ -33,4 +33,15 @@ router.post('/like/:id', async (request, response) => {
     response.redirect('/dashboard');
 });
 
+router.get('/single-gab/:id', async (request, response) => {
+    var gabId = request.params.id;
+    var gab = await models.gabs.find( { where: { id: gabId} });
+    var likes = await models.likes.findAll( { where: { gabId: gabId} });
+    var model = {
+        gab: gab,
+        likes: likes
+    }
+    response.render('single-gab', model);
+});
+
 module.exports = router;

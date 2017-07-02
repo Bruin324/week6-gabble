@@ -9,7 +9,9 @@ router.get('/dashboard', async (request, response) => {
         render.redirect('login');
     }
     else {
-        var gabs = await models.gabs.all();
+        var gabs = await models.gabs.all({
+            order: [['createdAt', 'DESC']]
+        });
         for (i = 0; i < gabs.length; i++) {
             if (gabs[i].userId === request.session.user.id) {
                 gabs[i].belongsToCurrentUser = true;

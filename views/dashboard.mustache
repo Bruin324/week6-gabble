@@ -8,10 +8,12 @@
     <h1>Dashboard</h1>
     Hello, {{#user}}{{name}}{{/user}}!
     {{#gabs}} 
-    <p>{{author}} | {{description}} | NumLikes: {{numLikes}}</p> 
+    <p>{{author}} | {{description}}</p> 
     <form method = 'post' action='/like/{{id}}'>
         <button type="submit">Like</button>      
     </form>
+    {{createdAt}}
+    <a href="/single-gab/{{id}}">{{numLikes}} Likes</a>
     {{#belongsToCurrentUser}}
     <form method = 'post' action='/like/{{id}}'>
         <button type="submit">Delete</button>      
