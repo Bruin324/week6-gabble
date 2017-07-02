@@ -1,0 +1,19 @@
+<html>
+
+<head>
+</head>
+<body>
+    <h1>Log In to Gabble</h1>
+<form method="post" action="/login">
+    <input type="text" name="email" placeholder="Email" autofocus/>
+    <input type="password" name="password" placeholder="Password"/>
+
+    <button type="submit">Submit</button>
+</form>
+{{#error}}
+{{msg}}
+{{/error}}
+<a href="/register">Click Here to Register</a>
+</body>
+
+</html>

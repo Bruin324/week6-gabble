@@ -1,0 +1,31 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>Dashboard</h1>
+    Hello, {{#user}}{{name}}{{/user}}!
+    {{#gabs}} 
+    <p>{{author}} | {{description}} | NumLikes: {{numLikes}}</p> 
+    <form method = 'post' action='/like/{{id}}'>
+        <button type="submit">Like</button>      
+    </form>
+    {{#belongsToCurrentUser}}
+    <form method = 'post' action='/like/{{id}}'>
+        <button type="submit">Delete</button>      
+    </form>
+    {{/belongsToCurrentUser}}
+    {{/gabs}}
+
+    <div>
+        <a href="/create-gab">Create a Gab</a>
+    </div>
+
+    <form action="/logout" method="post">
+        <button type="submit">LOGOUT</button>
+    </form>
+</body>
+
+</html>
