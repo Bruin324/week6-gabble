@@ -20,9 +20,18 @@ router.get('/create-gab/data', async (request, response) => {
 });
 
 router.post('/create-gab', async (request, response) => {
-    var newGab = {description: request.body.description, author: request.session.user.name, numLikes:0, userId: request.session.user.id}
-    await models.gabs.create(newGab);
-    response.redirect('/dashboard');
+    var gab = request.body.description;
+    request.checkBody('gab', 'Gab must be less than 140 characters').len(140);
+    var errors = request.validationErrors();
+    if (errors) {
+        var model = { errors: errors };
+        response.render('create-gab', model);
+    } else {
+        var timestamp = moment().format("ddd, MMMM Do YYYY, h:mm a");
+        var newGab = { description: gab, timestamp: timestamp, author: request.session.user.name, userId: request.session.user.id }
+        await models.gabs.create(newGab);
+        response.redirect('/dashboard');
+    }
 });
 
 router.post('/like/:id', async (request, response) => {
@@ -35,8 +44,8 @@ router.post('/like/:id', async (request, response) => {
 
 router.get('/single-gab/:id', async (request, response) => {
     var gabId = request.params.id;
-    var gab = await models.gabs.find( { where: { id: gabId} });
-    var likes = await models.likes.findAll( { where: { gabId: gabId} });
+    var gab = await models.gabs.find({ where: { id: gabId } });
+    var likes = await models.likes.findAll({ where: { gabId: gabId } });
     var model = {
         gab: gab,
         likes: likes

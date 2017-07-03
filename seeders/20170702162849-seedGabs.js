@@ -15,14 +15,14 @@ module.exports = {
     return (
       queryInterface.bulkInsert('gabs', [{
         description: 'This is the first Gab.',
-        numLikes: 0,
+        timestamp: new Date(),
         author: 'Admin',
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
         description: 'This is the second Gab.',
-        numLikes: 0,
+        timestamp: new Date(),
         author: 'Bruin',
         userId: 2,
         createdAt: new Date(),

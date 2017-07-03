@@ -16,7 +16,7 @@ module.exports = {
       queryInterface.bulkInsert('likes', [{
         userId: 2,
         gabId: 1,
-        userLikes: 'Bruin',
+        userLiked: 'Bruin',
         createdAt: new Date(),
         updatedAt: new Date()
       }], {}))

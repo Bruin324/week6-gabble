@@ -2,12 +2,11 @@
 module.exports = function (sequelize, DataTypes) {
   var gabs = sequelize.define('gabs', {
     description: DataTypes.STRING,
-    numLikes: DataTypes.INTEGER,
+    timestamp: DataTypes.STRING,
     author: DataTypes.STRING
   })
 
   gabs.associates = function(models) {
-    // associations can be defined here
     gabs.hasMany(models.likes);
     gabs.belongsTo(models.users);
   }

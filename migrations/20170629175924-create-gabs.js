@@ -11,8 +11,8 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      numLikes: {
-        type: Sequelize.INTEGER
+      timestamp: {
+        type: Sequelize.STRING
       },
       author: {
         type: Sequelize.STRING

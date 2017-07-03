@@ -10,6 +10,9 @@
             <textarea name="description" rows="" cols="" placeholder="Write your gab in 140 characters" autofocus></textarea>
         </div>
         <div>
+            {{#errors}}{{msg}}{{/errors}}
+        </div>
+        <div>
             <button type="submit">Save the Gab</button>
         </div>
     </form>

@@ -66,9 +66,9 @@ router.post('/login', async (request, response) => {
         // response.send(request.session);
         response.redirect('dashboard');
     } else {
-        var msg = "Invalid Email/Password";
-        var error = { msg: msg };
-        response.render('login', error);
+        var errors = [{msg: 'That email has already been registered.'}];
+        var model = { errors: errors };
+        response.render('login', model);
     }
 });
 

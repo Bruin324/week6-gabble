@@ -1,0 +1,16 @@
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-item {
+    padding-right: 5px;
+}
+
+.nav-hr {
+    margin: 0 .5em;
+}
+
+.gab-container {
+    /*border: 1px solid grey;*/
+}

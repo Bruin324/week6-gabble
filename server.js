@@ -9,6 +9,8 @@ const index = require('./routes/index-controller');
 const users = require('./routes/users-controller');
 const gabs = require('./routes/gabs-controller');
 const homepage = require('./routes/homepage-controller');
+const moment = require('moment');
+moment().format();
 
 const application = express();
 
@@ -24,6 +26,8 @@ application.use(session({
     resave: false,
     saveUninitialized: true
 }))
+
+application.use(express.static(__dirname + '/public'));
 
 application.use(index);
 application.use(users);

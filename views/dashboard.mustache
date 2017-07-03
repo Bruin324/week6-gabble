@@ -1,33 +1,38 @@
 <html>
 
 <head>
-
+    <title>Gabble - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h1>Dashboard</h1>
-    Hello, {{#user}}{{name}}{{/user}}!
-    {{#gabs}} 
-    <p>{{author}} | {{description}}</p> 
-    <form method = 'post' action='/like/{{id}}'>
-        <button type="submit">Like</button>      
-    </form>
-    {{createdAt}}
-    <a href="/single-gab/{{id}}">{{numLikes}} Likes</a>
-    {{#belongsToCurrentUser}}
-    <form method = 'post' action='/like/{{id}}'>
-        <button type="submit">Delete</button>      
-    </form>
-    {{/belongsToCurrentUser}}
+    <header class='nav-bar'>
+        <div class='nav-item'><a href="/dashboard">Gabble</a></div><hr class='nav-hr'>
+        <div class='nav-item'><a href="/create-gab">Write a gab</a></div><hr class='nav-hr'>
+        <div class='nav-item'>Logged in as {{#user}}{{name}}{{/user}}</div><hr class='nav-hr'>
+        <div class='nav-item'>
+            <form action="/logout" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </header>
+    {{#gabs}}
+    <div class='gab-container'>
+        <p>{{author}} | {{description}}</p>
+        {{timestamp}}
+        <form method='post' action='/like/{{id}}'>
+            <button type="submit">Like</button>
+        </form>
+        {{^likes}} No Likes Yet. {{/likes}} {{#likes}}
+        <a href="/single-gab/{{id}}">{{numLikes}} Likes</a> {{/likes}} {{#belongsToCurrentUser}}
+        <form method='post' action='/like/{{id}}'>
+            <button type="submit">Delete</button>
+        </form>
+        {{/belongsToCurrentUser}}
+    </div>
+    <hr>
     {{/gabs}}
 
-    <div>
-        <a href="/create-gab">Create a Gab</a>
-    </div>
-
-    <form action="/logout" method="post">
-        <button type="submit">LOGOUT</button>
-    </form>
 </body>
 
 </html>
