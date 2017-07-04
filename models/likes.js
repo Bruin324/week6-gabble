@@ -1,10 +1,11 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var likes = sequelize.define('likes', {
-    userLiked: DataTypes.STRING
+    userLiked: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
+    gabId: DataTypes.INTEGER
   })
-  likes.associates = function (models) {
-    likes.belongsTo(models.users);
+  likes.associate = function (models) {
     likes.belongsTo(models.gabs);
   }
   return likes;

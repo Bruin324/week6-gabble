@@ -10,8 +10,8 @@ router.get('/dashboard', async (request, response) => {
     }
     else {
         var gabs = await models.gabs.all({
-            order: [['createdAt', 'DESC']]
-            // ,include: [models.likes]
+            order: [['createdAt', 'DESC']],
+            include: [models.likes]
         });
         for (i = 0; i < gabs.length; i++) {
             if (gabs[i].userId === request.session.user.id) {

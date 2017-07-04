@@ -23,11 +23,14 @@
         <form method='post' action='/like/{{id}}'>
             <button type="submit">Like</button>
         </form>
-        {{^likes}} No Likes Yet. {{/likes}} {{#likes}}
-        <a href="/single-gab/{{id}}">{{numLikes}} Likes</a> {{/likes}} {{#belongsToCurrentUser}}
-        <form method='post' action='/like/{{id}}'>
-            <button type="submit">Delete</button>
-        </form>
+        {{^likes}} No Likes Yet. {{/likes}}
+        {{#likes.length}}
+        <a href="/single-gab/{{id}}">{{likes.length}} Likes</a> 
+        {{/likes.length}}
+        {{#belongsToCurrentUser}}
+            <form method='post' action='/like/{{id}}'>
+                <button type="submit">Delete</button>
+            </form>
         {{/belongsToCurrentUser}}
     </div>
     <hr>

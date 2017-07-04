@@ -6,7 +6,7 @@ module.exports = function (sequelize, DataTypes) {
     author: DataTypes.STRING
   })
 
-  gabs.associates = function(models) {
+  gabs.associate = function(models) {
     gabs.hasMany(models.likes);
     gabs.belongsTo(models.users);
   }

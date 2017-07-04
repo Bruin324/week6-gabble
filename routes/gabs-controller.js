@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const models = require('../models');
+const moment = require('moment');
+moment().format();
 
 
 router.post('/gabs', async (request, response) => {
@@ -21,7 +23,7 @@ router.get('/create-gab/data', async (request, response) => {
 
 router.post('/create-gab', async (request, response) => {
     var gab = request.body.description;
-    request.checkBody('gab', 'Gab must be less than 140 characters').len(140);
+    request.assert('description', 'Gab must be less than 140 characters').len(1, 140);
     var errors = request.validationErrors();
     if (errors) {
         var model = { errors: errors };
@@ -35,7 +37,7 @@ router.post('/create-gab', async (request, response) => {
 });
 
 router.post('/like/:id', async (request, response) => {
-    var gabLikedId = request.params.id;
+    var gabLikedId = parseInt(request.params.id);
     var userLikedId = request.session.user.id;
     var userLikedName = request.session.user.name;
     var newLike = await models.likes.create({ gabId: gabLikedId, userId: userLikedId, userLiked: userLikedName });
