@@ -72,7 +72,7 @@ router.post('/login', async (request, response) => {
     }
 });
 
-router.post('/logout', (request, response) => {
+router.get('/logout', (request, response) => {
     request.session.destroy(function (err) {
     });
     response.render('login');

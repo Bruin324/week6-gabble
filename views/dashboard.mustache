@@ -2,38 +2,44 @@
 
 <head>
     <title>Gabble - Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
     <header class='nav-bar'>
-        <div class='nav-item'><a href="/dashboard">Gabble</a></div><hr class='nav-hr'>
-        <div class='nav-item'><a href="/create-gab">Write a gab</a></div><hr class='nav-hr'>
-        <div class='nav-item'>Logged in as {{#user}}{{name}}{{/user}}</div><hr class='nav-hr'>
-        <div class='nav-item'>
-            <form action="/logout" method="post">
+        <div class='nav-item'><a href="/dashboard">Gabble</a></div>
+        <hr class='nav-hr'>
+        <div class='nav-item'><a href="/create-gab">Write a gab</a></div>
+        <hr class='nav-hr'>
+        <div class='nav-item'>Logged in as {{#user}}{{name}}{{/user}}</div>
+        <hr class='nav-hr'>
+        <div class='nav-item'><a href="/logout">Logout</a>
+            <!--<form action="/logout" method="post">
                 <button type="submit">Logout</button>
-            </form>
+            </form>-->
         </div>
     </header>
     {{#gabs}}
     <div class='gab-container'>
-        <p>{{author}} | {{description}}</p>
-        {{timestamp}}
-        <form method='post' action='/like/{{id}}'>
+        <div class="gab-text">{{author}} | {{description}}</div>
+        <div class="timestamp">{{timestamp}}</div>
+        <div class="gab-likes">
+        {{^likes}} 
+            No Likes Yet. 
+        {{/likes}} 
+        {{#likes.length}}
+            <a href="/single-gab/{{id}}">{{likes.length}} Likes</a> 
+        {{/likes.length}}
+        </div>
+        <form class="button like-button" method='post' action='/like/{{id}}'>
             <button type="submit">Like</button>
         </form>
-        {{^likes}} No Likes Yet. {{/likes}}
-        {{#likes.length}}
-        <a href="/single-gab/{{id}}">{{likes.length}} Likes</a> 
-        {{/likes.length}}
         {{#belongsToCurrentUser}}
-            <form method='post' action='/like/{{id}}'>
-                <button type="submit">Delete</button>
-            </form>
+        <form class="button delete-button" method='post' action='/delete/{{id}}'>
+            <button type="submit">Delete</button>
+        </form>
         {{/belongsToCurrentUser}}
     </div>
-    <hr>
     {{/gabs}}
 
 </body>

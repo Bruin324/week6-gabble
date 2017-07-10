@@ -1,19 +1,30 @@
 <html>
 
 <head>
-
+    <title>Gabble - Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
+    <header class='nav-bar'>
+        <div class='nav-item'><a href="/dashboard">Gabble</a></div>
+        <hr class='nav-hr'>
+        <div class='nav-item'><a href="/create-gab">Write a gab</a></div>
+        <hr class='nav-hr'>
+        <div class='nav-item'>Logged in as {{#user}}{{name}}{{/user}}</div>
+        <hr class='nav-hr'>
+        <div class='nav-item'><a href="/logout">Logout</a>
+        </div>
+    </header>    
     <form method='post' action '/create-gab'>
         <div>
-            <textarea name="description" rows="" cols="" placeholder="Write your gab in 140 characters" autofocus></textarea>
+            <textarea class="new-gab" name="description" rows="" cols="" placeholder="Write your gab in 140 characters" autofocus></textarea>
         </div>
         <div>
             {{#errors}}{{msg}}{{/errors}}
         </div>
         <div>
-            <button type="submit">Save the Gab</button>
+            <button class="button submit" type="submit">Save the Gab</button>
         </div>
     </form>
 </body>

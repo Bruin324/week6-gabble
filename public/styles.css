@@ -9,8 +9,23 @@
 
 .nav-hr {
     margin: 0 .5em;
+    padding: 10px 0px;
 }
 
 .gab-container {
-    /*border: 1px solid grey;*/
+    border: 1px solid grey;
+    margin: 10px 0;
 }
+
+.gab-text {
+    padding: 10px;
+}
+
+.timestamp {
+    padding: 10px;
+}
+
+.gab-likes {
+    padding: 0px 10px;
+}
+

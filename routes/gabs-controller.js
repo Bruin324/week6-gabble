@@ -12,13 +12,14 @@ router.post('/gabs', async (request, response) => {
 })
 
 router.get('/create-gab', async (request, response) => {
-    var user = request.session.user;
-    response.render('create-gab');
-});
-
-router.get('/create-gab/data', async (request, response) => {
-    var user = request.session.user;
-    response.send(request.session);
+    
+    if (request.session.user.isAuthenticated != true) {
+        render.render('login');
+    }
+    else {
+        var user = request.session.user;
+        response.render('create-gab')
+    };
 });
 
 router.post('/create-gab', async (request, response) => {
@@ -40,19 +41,37 @@ router.post('/like/:id', async (request, response) => {
     var gabLikedId = parseInt(request.params.id);
     var userLikedId = request.session.user.id;
     var userLikedName = request.session.user.name;
-    var newLike = await models.likes.create({ gabId: gabLikedId, userId: userLikedId, userLiked: userLikedName });
+    var alreadyLiked = await models.likes.find({ where: { gabId: gabLikedId, userId: userLikedId } });
+
+    if (!alreadyLiked) {
+        var newLike = await models.likes.create({ gabId: gabLikedId, userId: userLikedId, userLiked: userLikedName });
+    }
     response.redirect('/dashboard');
 });
 
 router.get('/single-gab/:id', async (request, response) => {
-    var gabId = request.params.id;
-    var gab = await models.gabs.find({ where: { id: gabId } });
-    var likes = await models.likes.findAll({ where: { gabId: gabId } });
-    var model = {
-        gab: gab,
-        likes: likes
+    
+    if (request.session.user.isAuthenticated != true) {
+        render.redirect('/login');
     }
-    response.render('single-gab', model);
+    else {
+        var gabId = request.params.id;
+        var gab = await models.gabs.find({ where: { id: gabId } });
+        var likes = await models.likes.findAll({ where: { gabId: gabId } });
+        var model = {
+            gab: gab,
+            likes: likes
+        }
+        response.render('single-gab', model);
+    };
+});
+
+router.post('/delete/:id', async (request, response) => {
+    var gabId = parseInt(request.params.id);
+    var removeLikes = await models.likes.destroy( { where: { gabId: gabId} });
+    var removeGab = await models.gabs.destroy( { where: {id: gabId} });
+
+    response.redirect('/dashboard');
 });
 
 module.exports = router;

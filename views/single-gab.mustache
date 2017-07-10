@@ -1,18 +1,34 @@
 <html>
-    <head>
-        
-    </head>
-    <body>
-        {{#gab}} 
-        <div>{{author}} | {{description}}</div>
-        <div>{{createdAt}}</div>
-        {{/gab}}
-        <h1>Liked By</h1>
-        <div>
-            {{#likes}}
-                {{userLiked}}
-            {{/likes}}
-        </div>
 
-    </body>
+<head>
+    <title>Gabble - Single Gab</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <header class='nav-bar'>
+        <div class='nav-item'><a href="/dashboard">Gabble</a></div>
+        <hr class='nav-hr'>
+        <div class='nav-item'><a href="/create-gab">Write a gab</a></div>
+        <hr class='nav-hr'>
+        <div class='nav-item'>Logged in as {{#user}}{{name}}{{/user}}</div>
+        <hr class='nav-hr'>
+        <div class='nav-item'><a href="/logout">Logout</a>
+        </div>
+    </header>
+    {{#gab}}
+    <div class="gab-text">{{author}} | {{description}}</div>
+    <div class="timestamp">{{timestamp}}</div>
+    {{/gab}}
+    <h3>Liked By</h3>
+    <div>
+        {{#likes}}
+        <div>
+            {{userLiked}}
+        </div>
+        {{/likes}}
+    </div>
+
+</body>
+
 </html>
