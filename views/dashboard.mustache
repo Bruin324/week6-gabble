@@ -24,21 +24,21 @@
         <div class="gab-text">{{author}} | {{description}}</div>
         <div class="timestamp">{{timestamp}}</div>
         <div class="gab-likes">
-        {{^likes}} 
-            No Likes Yet. 
-        {{/likes}} 
-        {{#likes.length}}
-            <a href="/single-gab/{{id}}">{{likes.length}} Likes</a> 
-        {{/likes.length}}
+            {{^likes}} No Likes Yet. {{/likes}} 
+            {{#likes.length}}<a href="/single-gab/{{id}}">{{likes.length}} Likes</a> {{/likes.length}}
         </div>
-        <form class="button like-button" method='post' action='/like/{{id}}'>
-            <button type="submit">Like</button>
-        </form>
-        {{#belongsToCurrentUser}}
-        <form class="button delete-button" method='post' action='/delete/{{id}}'>
-            <button type="submit">Delete</button>
-        </form>
-        {{/belongsToCurrentUser}}
+        <div class="dashboard-buttons">
+            <form class="like-button" method='post' action='/like/{{id}}'>
+                <button type="submit">Like</button>
+            </form>
+            {{#belongsToCurrentUser}}
+            <form class="delete-button" method='post' action='/delete/{{id}}'>
+                <button type="submit">Delete</button>
+            </form>
+            {{/belongsToCurrentUser}}
+
+        </div>
+
     </div>
     {{/gabs}}
 

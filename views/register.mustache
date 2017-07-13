@@ -6,6 +6,7 @@
 </head>
 
 <body>
+    <h1>Register for Gabble</h1>
     <form method="post" action="/register">
         <input type="text" name="name" placeholder="Name" autofocus>
         <input type="text" name="email" placeholder="Email" />
@@ -15,12 +16,13 @@
         <button type="submit">Submit</button>
         <div>
             {{#errors}}
-            <div>{{msg}}</div> 
+            <div>{{msg}}</div>
             {{/errors}}
         </div>
-        <div>
-            Already a user? <a href="/login">Click here to log in</a>
     </form>
+    <div>
+        Already a user? <a href="/login">Click here to log in</a>
+    </div>
 </body>
 
 </html>
